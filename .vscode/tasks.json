@@ -22,6 +22,27 @@
                 "reveal": "never"
             },
             "group": "build"
+        },
+        {
+            "type": "npm",
+            "script": "release:hotfix",
+            "label": "Release: Hotfix (patch)",
+            "detail": "Bump patch version, commit, and push tags",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "release:minor",
+            "label": "Release: Minor (feature)",
+            "detail": "Bump minor version, commit, and push tags",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "release:major",
+            "label": "Release: Major (breaking)",
+            "detail": "Bump major version, commit, and push tags",
+            "problemMatcher": []
         }
     ]
 }
