@@ -1,35 +1,40 @@
-# Build files
-out/
-node_modules/
-*.vsix
-
-# Source files (not needed in packaged extension)
+# Development and build files
 src/
-tsconfig.json
+node_modules/
+out/test/
+.vscode-test/
 .vscode/
-.git/
 .github/
 
-# Test files
-test/
-*.test.ts
-*.test.js
+# Build configuration
+tsconfig.json
+esbuild.js
+.eslintrc.json
+.prettierrc
 
-# Documentation (keep README.md)
+# Documentation (development only)
 VERSIONING.md
 GITHUB_ACTIONS.md
 .gemini/
 
-# Development files
+# Test and debug files
+test/
 debug_*.js
-*.map
-.eslintrc.json
-.prettierrc
+*.test.ts
+*.test.js
+
+# Package files
+*.vsix
+.vscodeignore
 
 # OS files
 .DS_Store
 Thumbs.db
 
-# Temporary files
+# Logs
 *.log
 npm-debug.log*
+
+# Git
+.git/
+.gitignore
