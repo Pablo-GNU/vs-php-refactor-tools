@@ -14,14 +14,14 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -42,7 +42,7 @@ jobs:
         vsce package
     
     - name: Upload VSIX artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: vs-php-refactor-tools-${{ github.sha }}
         path: '*.vsix'
