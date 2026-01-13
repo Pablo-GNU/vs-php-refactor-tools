@@ -1,0 +1,191 @@
+{
+  "name": "vs-php-refactor-tools",
+  "displayName": "PHP Refactor Tools",
+  "description": "Developer tools for PHP Refactoring",
+  "icon": "images/logo.png",
+  "keywords": [
+    "php",
+    "refactor",
+    "namespace",
+    "rename",
+    "indexing",
+    "oop"
+  ],
+  "author": "Pablo GNU",
+  "publisher": "PabloGNU",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:php",
+    "workspaceContains:composer.json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vs-php-refactor-tools.createPhpFile",
+        "title": "PHP Refactor Tools: New PHP Class..."
+      },
+      {
+        "command": "vs-php-refactor-tools.runPhpstan",
+        "title": "PHP Refactor Tools: Run PHPStan on Current File"
+      },
+      {
+        "command": "vs-php-refactor-tools.runPhpstanWorkspace",
+        "title": "PHP Refactor Tools: Run PHPStan on Workspace"
+      },
+      {
+        "command": "vs-php-refactor-tools.runPhpcs",
+        "title": "PHP Refactor Tools: Run PHPCS on Current File"
+      },
+      {
+        "command": "vs-php-refactor-tools.runPhpCsFixer",
+        "title": "PHP Refactor Tools: Fix Code Style (PHP-CS-Fixer)"
+      },
+      {
+        "command": "vs-php-refactor-tools.initWorkspaceConfig",
+        "title": "PHP Refactor Tools: Initialize Workspace Configuration"
+      },
+      {
+        "command": "vs-php-refactor-tools.rebuildIndex",
+        "title": "PHP Refactor Tools: Rebuild Index"
+      },
+      {
+        "command": "vs-php-refactor-tools.inspectIndex",
+        "title": "PHP Refactor Tools: Inspect Index (Debug)"
+      },
+      {
+        "command": "vs-php-refactor-tools.checkStatus",
+        "title": "PHP Refactor Tools: Check Integration Status"
+      },
+      {
+        "command": "vs-php-refactor-tools.moveFileRefactor",
+        "title": "PHP Refactor Tools: Move File with Namespace Update"
+      },
+      {
+        "command": "vs-php-refactor-tools.renameClass",
+        "title": "PHP Refactor Tools: Rename Class (Sync File)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "vs-php-refactor-tools.createPhpFile",
+          "group": "navigation",
+          "when": "explorerResourceIsFolder"
+        },
+        {
+          "command": "vs-php-refactor-tools.moveFileRefactor",
+          "group": "refactor@1",
+          "when": "resourceLangId == php"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PHP Refactor Tools",
+      "properties": {
+        "phpRefactorTools.indexer.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic PHP file indexing"
+        },
+        "phpRefactorTools.navigation.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Go to Definition, Implementation, and References (requires indexing)"
+        },
+        "phpRefactorTools.indexer.excludeVendor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Exclude vendor directory from indexing (faster but won't find vendor classes)"
+        },
+        "phpRefactorTools.indexer.exclude": {
+          "type": "array",
+          "default": [
+            "vendor",
+            "node_modules",
+            "storage",
+            "var"
+          ],
+          "description": "Directories to exclude from indexing"
+        },
+        "phpRefactorTools.phpstan.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable PHPStan static analysis"
+        },
+        "phpRefactorTools.phpstan.configFile": {
+          "type": "string",
+          "default": "phpstan.neon",
+          "description": "PHPStan configuration file path"
+        },
+        "phpRefactorTools.phpstan.level": {
+          "type": "string",
+          "default": "max",
+          "description": "PHPStan analysis level (0-9 or max)"
+        },
+        "phpRefactorTools.phpcs.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable PHP_CodeSniffer style checking"
+        },
+        "phpRefactorTools.phpcs.standard": {
+          "type": "string",
+          "default": "PSR12",
+          "description": "Coding standard to use (PSR12, PSR2, etc.)"
+        },
+        "phpRefactorTools.phpcs.configFile": {
+          "type": "string",
+          "default": "",
+          "description": "Custom phpcs.xml configuration file path"
+        },
+        "phpRefactorTools.phpCsFixer.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable PHP-CS-Fixer auto-formatting"
+        },
+        "phpRefactorTools.phpCsFixer.configFile": {
+          "type": "string",
+          "default": ".php-cs-fixer.php",
+          "description": "PHP-CS-Fixer configuration file path"
+        },
+        "phpRefactorTools.phpCsFixer.onSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-fix code style on file save"
+        },
+        "phpRefactorTools.refactor.autoMoveFile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically refactor namespace and imports when moving files (without preview)"
+        },
+        "phpRefactorTools.refactor.alwaysPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Always show preview before applying refactoring changes"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "verify": "node test/verify.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^16.11.7",
+    "@types/fs-extra": "^9.0.13",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "php-parser": "^3.1.5"
+  }
+}
