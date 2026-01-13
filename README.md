@@ -1,5 +1,4 @@
 # PHP Refactor Tools
-![Extension Icon](images/icon.png)
 
 **PHP Refactor Tools** is an all-in-one extension designed to supercharge your PHP development workflow in Visual Studio Code. It combines code generation, intelligent import management, advanced refactoring capabilities, and powerful integrations with industry-standard tools like PHPStan, PHP_CodeSniffer, and PHP-CS-Fixer.
 
