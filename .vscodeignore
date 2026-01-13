@@ -1,0 +1,35 @@
+# Build files
+out/
+node_modules/
+*.vsix
+
+# Source files (not needed in packaged extension)
+src/
+tsconfig.json
+.vscode/
+.git/
+.github/
+
+# Test files
+test/
+*.test.ts
+*.test.js
+
+# Documentation (keep README.md)
+VERSIONING.md
+GITHUB_ACTIONS.md
+.gemini/
+
+# Development files
+debug_*.js
+*.map
+.eslintrc.json
+.prettierrc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+npm-debug.log*
